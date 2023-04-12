@@ -9,7 +9,11 @@ from nostr.key import PrivateKey
 
 relay_manager = RelayManager()
 relay_manager.add_relay("wss://nostr.0x50.tech")
-# relay_manager.add_relay("wss://relay.damus.io")
+relay_manager.add_relay("wss://relay.damus.io")
+relay_manager.add_relay("wss://nostr.mom")
+relay_manager.add_relay("wss://relay.nostrich.de")
+relay_manager.add_relay("wss://relay.current.fyi")
+relay_manager.add_relay("wss://relay.nostr.band")
 relay_manager.open_connections({"cert_reqs": ssl.CERT_NONE}) # NOTE: This disables ssl certificate verification
 time.sleep(1.25) # allow the connections to open
 
