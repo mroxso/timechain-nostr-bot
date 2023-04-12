@@ -1,2 +1,0 @@
-Private key: nsec1yl04em5w3jc9dhf8ue2v59pl87wjr2j2l90pknstax4k650qmuasfzxdfw
-Public key: npub176s9qjq6akm4k7zumdaafpj4j8smstklvr7f06qfejwesgwlga5s6408p5
