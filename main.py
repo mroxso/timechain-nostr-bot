@@ -32,9 +32,10 @@ while True:
     block_height = data["height"]
 
     if(block_height > old_block_height):
-        print("Die aktuelle Bitcoin-Blockhöhe beträgt:", block_height)
+        message = "⚡️ " + str(block_height) + " ⚡️"
+        print(message)
         event = Event(
-            content=str(block_height),
+            content=str(message),
             public_key=private_key.public_key.hex()
         )
         private_key.sign_event(event)
