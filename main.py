@@ -36,6 +36,6 @@ while True:
         )
         private_key.sign_event(event)
         relay_manager.publish_event(event)
-        relay_manager.close_connections() # NEEDED?!
+        # relay_manager.close_connections() # NEEDED?!
         old_block_height = block_height
     time.sleep(60)
