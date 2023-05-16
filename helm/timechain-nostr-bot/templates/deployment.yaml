@@ -39,6 +39,8 @@ spec:
                 secretKeyRef:
                   name: {{ include "timechain-nostr-bot.fullname" . }}-privkey
                   key: PRIVATE_KEY
+            - name: RELAYS
+              value: {{ .Values.RELAYS }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
