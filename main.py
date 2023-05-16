@@ -8,13 +8,15 @@ from nostr.message_type import ClientMessageType
 from nostr.key import PrivateKey
 
 try:
+    # Read env variable and add relays
+    env_relays = os.getenv('RELAYS') # None
+    if env_relays is None:
+        env_relays = "wss://relay.nostr.band"
     relay_manager = RelayManager()
-    relay_manager.add_relay("wss://nostr.0x50.tech")
-    # relay_manager.add_relay("wss://relay.damus.io")
-    # relay_manager.add_relay("wss://nostr.mom")
-    # relay_manager.add_relay("wss://relay.nostrich.de")
-    # relay_manager.add_relay("wss://relay.current.fyi")
-    # relay_manager.add_relay("wss://relay.nostr.band")
+    for relay in env_relays.split(","):
+        print("Adding relay: " + relay)
+        relay_manager.add_relay(relay)
+
     relay_manager.open_connections({"cert_reqs": ssl.CERT_NONE}) # NOTE: This disables ssl certificate verification
     time.sleep(1.25) # allow the connections to open
 
