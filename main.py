@@ -29,22 +29,26 @@ try:
 
     old_block_height = 0
     while True:
-        url = "https://blockchain.info/latestblock"
-        response = requests.get(url)
-        data = response.json()
-        block_height = data["height"]
+        try:
+            url = "https://blockchain.info/latestblock"
+            response = requests.get(url)
+            data = response.json()
+            block_height = data["height"]
 
-        if(block_height > old_block_height):
-            message = "⚡️ " + str(block_height) + " ⚡️"
-            print(message)
-            event = Event(
-                content=str(message),
-                public_key=private_key.public_key.hex()
-            )
-            private_key.sign_event(event)
-            relay_manager.publish_event(event)
-            # relay_manager.close_connections() # NEEDED?!
-            old_block_height = block_height
+            if(block_height > old_block_height):
+                message = "⚡️ " + str(block_height) + " ⚡️"
+                print(message)
+                event = Event(
+                    content=str(message),
+                    public_key=private_key.public_key.hex()
+                )
+                private_key.sign_event(event)
+                relay_manager.publish_event(event)
+                # relay_manager.close_connections() # NEEDED?!
+                old_block_height = block_height
+        except Exception as e:
+            print(e)
+            time.sleep(10)
         time.sleep(5)
 except Exception as e:
     print(e)
