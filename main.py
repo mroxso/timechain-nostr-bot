@@ -42,11 +42,8 @@ try:
     while True:
         failCount = 0
         try:
-            url = "https://blockchain.info/latestblock"
-            response = requests.get(url)
-            data = response.json()
-            block_height = data["height"]
-
+            url = "https://blockstream.info/api/blocks/tip/height"
+            block_height = requests.get(url).json()
             if(block_height > old_block_height):
                 message = "⚡️ " + str(block_height) + " ⚡️"
                 print(message)
