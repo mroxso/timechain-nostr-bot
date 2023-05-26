@@ -4,7 +4,6 @@ import ssl
 import os
 from nostr.event import Event
 from nostr.relay_manager import RelayManager
-from nostr.message_type import ClientMessageType
 from nostr.key import PrivateKey
 
 def connect(relays):
@@ -23,7 +22,7 @@ def disconnect(relay_manager):
     print("Disconnecting...")
     relay_manager.close_connections()
     print("Disconnected")
-    
+
 try:
     # Read env variable and add relays
     env_relays = os.getenv('RELAYS') # None
@@ -37,6 +36,7 @@ try:
         exit(1)
 
     private_key = PrivateKey(bytes.fromhex(env_private_key))
+    public_key = private_key.public_key.hex()
 
     old_block_height = 0
     while True:
@@ -46,7 +46,6 @@ try:
             block_height = requests.get(url).json()
             if(block_height > old_block_height):
                 message = "⚡️ " + str(block_height) + " ⚡️"
-                print(message)
                 event = Event(
                     content=str(message),
                     public_key=private_key.public_key.hex()
@@ -54,6 +53,7 @@ try:
                 private_key.sign_event(event)
                 relay_manager.publish_event(event)
                 # relay_manager.close_connections() # NEEDED?!
+                print(message)
                 old_block_height = block_height
             time.sleep(5)
         except Exception as e:
