@@ -6,7 +6,6 @@ import uuid
 import json
 from nostr.event import Event, EventKind
 from nostr.relay_manager import RelayManager
-from nostr.message_type import ClientMessageType
 from nostr.key import PrivateKey
 from nostr.filter import Filter, Filters
 
