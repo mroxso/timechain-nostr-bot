@@ -1,8 +1,7 @@
-version: '3'
 services:
-  timechain:
-    # image: ghcr.io/mroxso/timechain-nostr-bot:latest
+  timechain-nostr-bot:
+    image: ghcr.io/mroxso/timechain-nostr-bot:latest
     build: .
     environment:
-      - "RELAYS=wss://relay.example.com"
-      - "PRIVATE_KEY=YOUR_HEX_PRIVATE_KEY"
+      - PRIVATE_KEY=YOUR_PRIVATE_KEY
+    restart: always
