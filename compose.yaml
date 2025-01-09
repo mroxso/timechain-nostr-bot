@@ -1,0 +1,7 @@
+services:
+  timechain-nostr-bot:
+    image: ghcr.io/mroxso/timechain-nostr-bot:latest
+    build: .
+    environment:
+      - PRIVATE_KEY=YOUR_PRIVATE_KEY
+    restart: always
