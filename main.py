@@ -8,6 +8,7 @@ from nostr.event import Event, EventKind
 from nostr.relay_manager import RelayManager
 from nostr.key import PrivateKey
 from nostr.filter import Filter, Filters
+from nostr.message_type import ClientMessageType
 
 def get_relays():
     env_relays = os.getenv('RELAYS')
